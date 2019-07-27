@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title=""
+        android:icon="@drawable/e_t_w"
+        app:showAsAction="always" >
+
+        <menu>
+            <item android:id="@+id/action_eng_ta"
+                android:title="English - Tamil"
+                android:icon="@drawable/e_t"
+                android:orderInCategory="100"
+                app:showAsAction="never"/>
+
+            <item android:id="@+id/action_ta_eng"
+                android:title="Tamil - English"
+                android:icon="@drawable/t_e"
+                android:orderInCategory="100"
+                app:showAsAction="never"/>
+
+
+            <item android:id="@+id/action_ta_ta"
+                android:title="Tamil - Tamil"
+                android:icon="@drawable/t_t"
+                android:orderInCategory="100"
+                app:showAsAction="never"/>
+
+
+        </menu>
+    </item>
+</menu>

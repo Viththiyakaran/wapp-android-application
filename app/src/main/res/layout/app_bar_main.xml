@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:contentInsetStartWithNavigation="0dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/edit_search"
+                android:paddingLeft="5dp"
+                android:textColor="#000000"
+                android:background="@drawable/radious_edit_text"
+                android:hint="Search"
+                android:drawableLeft="@drawable/ic_search"
+                android:textColorHint="#9b9a9a"
+                android:textSize="20dp"
+                android:drawablePadding="3dp"
+                />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+   <FrameLayout
+       android:id="@+id/fragment_container"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+
+
+</LinearLayout>
