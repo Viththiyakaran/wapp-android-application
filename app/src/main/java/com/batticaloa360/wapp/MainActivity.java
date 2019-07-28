@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity
     MenuItem menuSetting;
     DictionaryFragment dictionaryFragment;
     BookmarkFragment bookmarkFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,20 @@ public class MainActivity extends AppCompatActivity
         bookmarkFragment = new BookmarkFragment();
 
         goTOFragment(dictionaryFragment,true);
+
+        dictionaryFragment.setOnFragmentListener(new FragmentListener() {
+            @Override
+            public void onItemClick() {
+                goTOFragment(new DetailFragment(),false);
+            }
+        });
+
+        bookmarkFragment.setOnFragmentListener(new FragmentListener() {
+            @Override
+            public void onItemClick() {
+                goTOFragment(new DetailFragment(),false);
+            }
+        });
     }
 
     @Override
