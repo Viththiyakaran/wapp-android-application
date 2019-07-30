@@ -9,11 +9,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 
 public class DictionaryFragment extends Fragment {
 
+
+    private String value = "Hello Everyone";
     private FragmentListener listener;
 
 
@@ -37,14 +42,55 @@ public class DictionaryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button myButton = (Button)view.findViewById(R.id.myBtn);
+        /*Button myButton = (Button)view.findViewById(R.id.myBtn);
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(listener!=null)
-                    listener.onItemClick();
+                    listener.onItemClick(value);
+            }
+        });*/
+
+        ListView dicList = view.findViewById(R.id.dictionaryList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_expandable_list_item_1,getListOfWords());
+        dicList.setAdapter(adapter);
+
+        dicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                if(listener!=null)
+                    listener.onItemClick(getListOfWords()[position]);
             }
         });
+    }
+
+    String[] getListOfWords()
+    {
+        String[] source = new String[]{
+                "a",
+                "an",
+                "ability",
+                "able",
+                "about",
+                "above",
+                "abroad",
+                "absent",
+                "absolutely",
+                "awful",
+                "accent",
+                "accept",
+                "access",
+                "accident",
+                "accommodation",
+                "accompany",
+                "according to",
+                "account",
+                "accountant",
+                "accurate",
+                "ache"
+
+        };
+        return source;
     }
 
     @Override

@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,15 +51,17 @@ public class MainActivity extends AppCompatActivity
 
         dictionaryFragment.setOnFragmentListener(new FragmentListener() {
             @Override
-            public void onItemClick() {
-                goTOFragment(new DetailFragment(),false);
+            public void onItemClick(String value) {
+
+                goTOFragment(DetailFragment.getNewinstance(value),false);
             }
         });
 
         bookmarkFragment.setOnFragmentListener(new FragmentListener() {
             @Override
-            public void onItemClick() {
-                goTOFragment(new DetailFragment(),false);
+            public void onItemClick(String value) {
+
+                goTOFragment(DetailFragment.getNewinstance(value),false);
             }
         });
     }
