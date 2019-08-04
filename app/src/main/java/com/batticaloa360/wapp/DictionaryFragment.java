@@ -20,6 +20,8 @@ public class DictionaryFragment extends Fragment {
 
     private String value = "Hello Everyone";
     private FragmentListener listener;
+    ArrayAdapter<String> adapter;
+    ListView dicList;
 
 
     public DictionaryFragment() {
@@ -51,8 +53,8 @@ public class DictionaryFragment extends Fragment {
             }
         });*/
 
-        ListView dicList = view.findViewById(R.id.dictionaryList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_expandable_list_item_1,getListOfWords());
+         dicList = view.findViewById(R.id.dictionaryList);
+         adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_expandable_list_item_1,getListOfWords());
         dicList.setAdapter(adapter);
 
         dicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -64,6 +66,28 @@ public class DictionaryFragment extends Fragment {
         });
     }
 
+
+
+    public  void resetDataSource(String[] source)
+    {
+        adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_expandable_list_item_1,source);
+        dicList.setAdapter(adapter);
+
+    }
+    public  void fiterValue(String value)
+    {
+          //  adapter.getFilter().filter(value);
+            int size = adapter.getCount();
+            for(int i = 0; i < size ; i++)
+            {
+                if(adapter.getItem(i).startsWith(value))
+                {
+                    dicList.setSelection(i);
+                    break;
+                }
+            }
+
+    }
     String[] getListOfWords()
     {
         String[] source = new String[]{

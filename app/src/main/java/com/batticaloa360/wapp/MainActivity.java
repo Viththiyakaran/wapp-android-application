@@ -8,6 +8,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -64,6 +67,25 @@ public class MainActivity extends AppCompatActivity
                 goTOFragment(DetailFragment.getNewinstance(value),false);
             }
         });
+
+
+        EditText edit_search = findViewById(R.id.edit_search);
+        edit_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        dictionaryFragment.fiterValue(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
     @Override
@@ -87,6 +109,9 @@ public class MainActivity extends AppCompatActivity
         String id =  Global.getState(this,"dic_type");
         if(id != null)
              onOptionsItemSelected(menu.findItem(Integer.valueOf(id)));
+        else
+            dictionaryFragment.resetDataSource( DB.getData(R.id.action_eng_ta));
+
         return true;
     }
 
@@ -101,15 +126,20 @@ public class MainActivity extends AppCompatActivity
 
 
         Global.saveState(this,"dic_type",String.valueOf(id));
+        String[] source = DB.getData(id);
+
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_eng_ta) {
+           dictionaryFragment.resetDataSource(source);
             menuSetting.setIcon(getDrawable(R.drawable.e_t_w));
         }else if(id==R.id.action_ta_eng)
         {
+            dictionaryFragment.resetDataSource(source);
             menuSetting.setIcon(getDrawable(R.drawable.t_e_w));
         }else if(id==R.id.action_ta_ta)
         {
+            dictionaryFragment.resetDataSource(source);
             menuSetting.setIcon(getDrawable(R.drawable.t_t_w));
         }
 
