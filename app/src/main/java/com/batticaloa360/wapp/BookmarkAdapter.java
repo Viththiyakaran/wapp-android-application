@@ -5,29 +5,33 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BookmarkAdapter extends BaseAdapter {
     private  ListItemListener listener;
     private  ListItemListener listenerBtnDelete;
     Context mContext;
-    String[] mSocure;
+   ArrayList<String> mSocure;
 
     public  BookmarkAdapter(Context context, String[] source)
     {
             this.mContext = context;
-            this.mSocure = source;
+            this.mSocure =  new ArrayList<>(Arrays.asList(source));
     }
     @Override
     public int getCount() {
-        return mSocure.length;
+        return mSocure.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return mSocure[i];
+        return mSocure.get(i);
     }
 
     @Override
@@ -53,7 +57,7 @@ public class BookmarkAdapter extends BaseAdapter {
                 viewHolder = (ViewHolder) view.getTag();
         }
 
-        viewHolder.textView.setText(mSocure[i]);
+        viewHolder.textView.setText(mSocure.get(i));
 
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +76,11 @@ public class BookmarkAdapter extends BaseAdapter {
             }
         });
         return view;
+    }
+
+    public  void  removeItem(int position)
+    {
+        mSocure.remove(position);
     }
     class ViewHolder{
         TextView textView;
