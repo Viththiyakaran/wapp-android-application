@@ -1,33 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
-    <LinearLayout
+    
+    <ListView
+        android:id="@+id/bookmarklist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Bookmark FRAGMENT"
-            android:gravity="center"/>
-
-        <Button
-            android:id="@+id/myBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="GO TO DETAILS"
-            android:layout_gravity="center"
-            />
+        android:layout_height="match_parent"/>
 
 
-    </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>
