@@ -61,7 +61,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(String value) {
 
-                goTOFragment(DetailFragment.getNewinstance(value),false);
+                String id =  Global.getState(MainActivity.this,"dic_type");
+                int dicType = id == null ? R.id.action_eng_ta:Integer.valueOf(id);
+                goTOFragment(DetailFragment.getNewinstance(value,dbHelper,dicType),false);
             }
         });
 
@@ -69,7 +71,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(String value) {
 
-                goTOFragment(DetailFragment.getNewinstance(value),false);
+                String id =  Global.getState(MainActivity.this,"dic_type");
+                int dicType = id == null ? R.id.action_eng_ta:Integer.valueOf(id);
+                goTOFragment(DetailFragment.getNewinstance(value,dbHelper,dicType),false);
             }
         });
 

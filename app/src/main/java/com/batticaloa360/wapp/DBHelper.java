@@ -174,11 +174,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public  Word getWordFromBookmark(String key){
 
         String q = "select * from bookmark where [key] = ?";
-        Cursor result = mDB.rawQuery(q,null);
+        Cursor result = mDB.rawQuery(q,new String[]{key});
 
-        Word word = new Word();
+        Word word =  null;
         while(result.moveToNext() )
         {
+            word = new Word();
             word.key = result.getString(result.getColumnIndex(COL_KEY));
             word.value = result.getString(result.getColumnIndex(COL_VALUE));
         }

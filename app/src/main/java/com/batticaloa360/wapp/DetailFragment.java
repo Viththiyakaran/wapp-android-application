@@ -23,15 +23,20 @@ public class DetailFragment extends Fragment {
     private ImageButton btnVolume,btnBookmark;
     private WebView tvWordTranslate;
 
+    private DBHelper mDBHelper;
+    private int mDicType;
+
     public DetailFragment() {
         // Required empty public constructor
     }
 
 
 
-    public static DetailFragment getNewinstance(String value) {
+    public static DetailFragment getNewinstance(String value,DBHelper dbHelper, int dicType) {
         DetailFragment fragment = new DetailFragment();
         fragment.value = value;
+        fragment.mDBHelper = dbHelper;
+        fragment.mDicType = dicType;
         return fragment;
     }
 
@@ -57,7 +62,17 @@ public class DetailFragment extends Fragment {
         btnVolume = (ImageButton) view.findViewById(R.id.btnVolume);
         tvWordTranslate = (WebView) view.findViewById(R.id.tvWordTranslate);
 
-        btnBookmark.setTag(0);
+       Word word =  mDBHelper.getWord(value,mDicType);
+        tvWord.setText(word.key);
+        tvWordTranslate.loadDataWithBaseURL("",word.value,"text/html","utf-8",null);
+
+
+      Word bookMarkWord = mDBHelper.getWordFromBookmark(value);
+      int isMark = bookMarkWord == null? 0:1;
+      btnBookmark.setTag(isMark);
+
+      int icon = bookMarkWord == null ? R.drawable.ic_bookmark_border : R.drawable.ic_bookmark_fill;
+      btnBookmark.setImageResource(icon);
 
         btnBookmark.setOnClickListener(new View.OnClickListener() {
             @Override
