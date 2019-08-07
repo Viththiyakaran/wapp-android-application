@@ -9,6 +9,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -16,6 +19,10 @@ public class DetailFragment extends Fragment {
 
 
     private  String value ="";
+    private TextView tvWord;
+    private ImageButton btnVolume,btnBookmark;
+    private WebView tvWordTranslate;
+
     public DetailFragment() {
         // Required empty public constructor
     }
@@ -44,7 +51,31 @@ public class DetailFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Toast.makeText(getContext(),this.value,Toast.LENGTH_SHORT).show();
+
+        tvWord = (TextView)view.findViewById(R.id.tvWord);
+        btnBookmark = (ImageButton) view.findViewById(R.id.btnBookmark);
+        btnVolume = (ImageButton) view.findViewById(R.id.btnVolume);
+        tvWordTranslate = (WebView) view.findViewById(R.id.tvWordTranslate);
+
+        btnBookmark.setTag(0);
+
+        btnBookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+             int i =   (int)btnBookmark.getTag();
+
+             if(i==0)
+             {
+                 btnBookmark.setImageResource(R.drawable.ic_bookmark_fill);
+                 btnBookmark.setTag(1);
+             }
+             else
+             {
+                 btnBookmark.setImageResource(R.drawable.ic_bookmark_border);
+                 btnBookmark.setTag(0);
+             }
+            }
+        });
     }
 
     @Override

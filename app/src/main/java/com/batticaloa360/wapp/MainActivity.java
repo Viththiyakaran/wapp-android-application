@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     MenuItem menuSetting;
+    Toolbar toolbar;
     DictionaryFragment dictionaryFragment;
     BookmarkFragment bookmarkFragment;
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
@@ -154,7 +155,12 @@ public class MainActivity extends AppCompatActivity
 
         if(id == R.id.nav_bookmark)
         {
-            goTOFragment(bookmarkFragment,false);
+            String activeFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container).getClass().getSimpleName();
+            if(!activeFragment.equals(BookmarkFragment.class.getSimpleName()))
+            {
+                goTOFragment(bookmarkFragment,false);
+            }
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -172,5 +178,24 @@ public class MainActivity extends AppCompatActivity
         if(!isTop)
             fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+   @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        String activeFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container).getClass().getSimpleName();
+        if(activeFragment.equals(BookmarkFragment.class.getSimpleName()))
+        {
+            menuSetting.setVisible(false);
+            toolbar.findViewById(R.id.edit_search).setVisibility(View.GONE);
+            toolbar.setTitle("Bookmark");
+        }
+        else
+        {
+            menuSetting.setVisible(true);
+            toolbar.findViewById(R.id.edit_search).setVisibility(View.VISIBLE);
+            toolbar.setTitle("");
+        }
+
+        return true;
     }
 }
