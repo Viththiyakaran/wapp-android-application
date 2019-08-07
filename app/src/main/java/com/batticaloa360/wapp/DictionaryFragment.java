@@ -3,6 +3,7 @@ package com.batticaloa360.wapp;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,11 +14,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class DictionaryFragment extends Fragment {
+
 
 
     private String value = "Hello Everyone";
@@ -55,6 +59,8 @@ public class DictionaryFragment extends Fragment {
                     listener.onItemClick(value);
             }
         });*/
+
+
 
          dicList = view.findViewById(R.id.dictionaryList);
          adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_expandable_list_item_1,mSource);

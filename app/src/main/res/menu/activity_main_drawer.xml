@@ -11,34 +11,5 @@
 
     </group>
 
-    <item android:title="Network">
-        <menu>
-
-            <item
-                android:id="@+id/nav_rate"
-                android:icon="@drawable/ic_thumb_up"
-                android:title="Rate" />
-
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-        </menu>
-    </item>
-
-    <item android:title="Other">
-        <menu>
-
-            <item
-                android:id="@+id/nav_help"
-                android:icon="@drawable/ic_help"
-                android:title="Help" />
-
-            <item
-                android:id="@+id/nav_about"
-                android:icon="@drawable/ic_info"
-                android:title="About" />
-        </menu>
-    </item>
 
 </menu>
