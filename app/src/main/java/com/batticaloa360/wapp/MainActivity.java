@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         dictionaryFragment = new DictionaryFragment();
-        bookmarkFragment = new BookmarkFragment();
+        bookmarkFragment = BookmarkFragment.getNewInstance(dbHelper);
 
         goTOFragment(dictionaryFragment,true);
 

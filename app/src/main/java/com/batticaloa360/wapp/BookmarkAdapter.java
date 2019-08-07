@@ -19,10 +19,10 @@ public class BookmarkAdapter extends BaseAdapter {
     Context mContext;
    ArrayList<String> mSocure;
 
-    public  BookmarkAdapter(Context context, String[] source)
+    public  BookmarkAdapter(Context context, ArrayList<String> source)
     {
             this.mContext = context;
-            this.mSocure =  new ArrayList<>(Arrays.asList(source));
+            this.mSocure =  source;
     }
     @Override
     public int getCount() {

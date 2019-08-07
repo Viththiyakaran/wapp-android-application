@@ -145,11 +145,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public  ArrayList<String> getAllWordFromBookmark(String key)
+    public  ArrayList<String> getAllWordFromBookmark()
     {
 
         String q = "Select * from bookmark order by [date] desc";
-        Cursor result = mDB.rawQuery(q,new String[]{key });
+        Cursor result = mDB.rawQuery(q,null);
 
        ArrayList<String> source = new ArrayList<>();
         while(result.moveToNext() )

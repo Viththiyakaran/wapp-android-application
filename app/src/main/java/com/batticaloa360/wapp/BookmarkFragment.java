@@ -20,12 +20,18 @@ public class BookmarkFragment extends Fragment {
 
 
     private  FragmentListener listener;
+ private  DBHelper mDBHelper;
 
     public BookmarkFragment() {
         // Required empty public constructor
     }
 
-
+public  static BookmarkFragment getNewInstance(DBHelper dbHelper)
+{
+    BookmarkFragment fragment = new BookmarkFragment();
+    fragment.mDBHelper = dbHelper;
+    return  fragment;
+}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,7 @@ public class BookmarkFragment extends Fragment {
 
 
         ListView bookmarklist = (ListView) view.findViewById(R.id.bookmarklist);
-        final BookmarkAdapter adapter  = new BookmarkAdapter(getActivity(),getListOfWords());
+        final BookmarkAdapter adapter  = new BookmarkAdapter(getActivity(),mDBHelper.getAllWordFromBookmark());
         bookmarklist.setAdapter(adapter);
 
         adapter.setOnItemClick(new ListItemListener() {
@@ -85,34 +91,7 @@ public class BookmarkFragment extends Fragment {
         this.listener = listener;
     }
 
-    String[] getListOfWords()
-    {
-        String[] source = new String[]{
-                "a",
-                "an",
-                "ability",
-                "able",
-                "about",
-                "above",
-                "abroad",
-                "absent",
-                "absolutely",
-                "awful",
-                "accent",
-                "accept",
-                "access",
-                "accident",
-                "accommodation",
-                "accompany",
-                "according to",
-                "account",
-                "accountant",
-                "accurate",
-                "ache"
 
-        };
-        return source;
-    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
