@@ -22,6 +22,8 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity
     DictionaryFragment dictionaryFragment;
     BookmarkFragment bookmarkFragment;
 
+    DBHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +41,7 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        dbHelper = new DBHelper(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -110,9 +114,10 @@ public class MainActivity extends AppCompatActivity
         String id =  Global.getState(this,"dic_type");
         if(id != null)
              onOptionsItemSelected(menu.findItem(Integer.valueOf(id)));
-        else
-            dictionaryFragment.resetDataSource( DB.getData(R.id.action_eng_ta));
-
+        else {
+            ArrayList<String> source = dbHelper.getWord(R.id.action_eng_ta);
+            dictionaryFragment.resetDataSource(source);
+        }
         return true;
     }
 
@@ -123,11 +128,12 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        if(R.id.action_settings  == id )
+            return  true;
 
 
         Global.saveState(this,"dic_type",String.valueOf(id));
-        String[] source = DB.getData(id);
+        ArrayList<String> source = dbHelper.getWord(id);
 
 
         //noinspection SimplifiableIfStatement

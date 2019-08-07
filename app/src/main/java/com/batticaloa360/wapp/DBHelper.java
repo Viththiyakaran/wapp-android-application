@@ -41,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
     {
         super(context, DATABASE_NAME,null,DATABASE_VERSION);
         mContext = context;
-        DATABASE_LOCATION = "data/data/"+ mContext.getPackageName() + "/database/";
+        DATABASE_LOCATION = "data/data/"+ mContext.getPackageName() + "/databases/";
         DATABASE_FULL_PATH =  DATABASE_LOCATION  + DATABASE_NAME;
 
 
@@ -50,6 +50,8 @@ public class DBHelper extends SQLiteOpenHelper {
         {
             try
             {
+                File dbLocation = new File(DATABASE_LOCATION);
+                dbLocation.mkdirs();
                 extractAssetToDatabaseDirectory(DATABASE_NAME);
             }catch (IOException e)
             {
@@ -59,7 +61,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
         mDB = SQLiteDatabase.openOrCreateDatabase(DATABASE_FULL_PATH,null);
     }
+    boolean isExistingDB()
+    {
+        File file = new File(DATABASE_FULL_PATH);
 
+        return  file.exists();
+    }
 
     public  void extractAssetToDatabaseDirectory(String filename) throws IOException
     {
@@ -85,12 +92,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    boolean isExistingDB()
-    {
-        File file = new File(DATABASE_FULL_PATH);
 
-        return  file.exists();
-    }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 

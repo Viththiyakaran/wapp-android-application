@@ -14,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 
 public class DictionaryFragment extends Fragment {
 
@@ -22,6 +24,7 @@ public class DictionaryFragment extends Fragment {
     private FragmentListener listener;
     ArrayAdapter<String> adapter;
     ListView dicList;
+    private ArrayList<String> mSource = new ArrayList<String>();
 
 
     public DictionaryFragment() {
@@ -54,23 +57,24 @@ public class DictionaryFragment extends Fragment {
         });*/
 
          dicList = view.findViewById(R.id.dictionaryList);
-         adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_expandable_list_item_1,getListOfWords());
+         adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_expandable_list_item_1,mSource);
         dicList.setAdapter(adapter);
 
         dicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 if(listener!=null)
-                    listener.onItemClick(getListOfWords()[position]);
+                    listener.onItemClick(mSource.get(position));
             }
         });
     }
 
 
 
-    public  void resetDataSource(String[] source)
+    public  void resetDataSource(ArrayList<String> source)
     {
-        adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_expandable_list_item_1,source);
+        mSource = source;
+        adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_expandable_list_item_1,mSource);
         dicList.setAdapter(adapter);
 
     }
@@ -88,7 +92,7 @@ public class DictionaryFragment extends Fragment {
             }
 
     }
-    String[] getListOfWords()
+    /*String[] getListOfWords()
     {
         String[] source = new String[]{
                 "a",
@@ -115,7 +119,7 @@ public class DictionaryFragment extends Fragment {
 
         };
         return source;
-    }
+    }*/
 
     @Override
     public void onAttach(Context context) {
