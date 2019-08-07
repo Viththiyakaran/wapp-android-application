@@ -62,7 +62,7 @@ public class DetailFragment extends Fragment {
         btnVolume = (ImageButton) view.findViewById(R.id.btnVolume);
         tvWordTranslate = (WebView) view.findViewById(R.id.tvWordTranslate);
 
-       Word word =  mDBHelper.getWord(value,mDicType);
+       final Word word =  mDBHelper.getWord(value,mDicType);
         tvWord.setText(word.key);
         tvWordTranslate.loadDataWithBaseURL("",word.value,"text/html","utf-8",null);
 
@@ -83,11 +83,13 @@ public class DetailFragment extends Fragment {
              {
                  btnBookmark.setImageResource(R.drawable.ic_bookmark_fill);
                  btnBookmark.setTag(1);
+                 mDBHelper.addBookmark(word);
              }
              else
              {
                  btnBookmark.setImageResource(R.drawable.ic_bookmark_border);
                  btnBookmark.setTag(0);
+                 mDBHelper.removeBookmark(word);
              }
             }
         });
