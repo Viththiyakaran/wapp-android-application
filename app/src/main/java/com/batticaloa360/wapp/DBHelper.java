@@ -145,6 +145,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public  void removeBookmark(String key)
+    {
+        try {
+            String q = "DELETE from bookmark where (["+COL_KEY+"]) = ?;";
+            mDB.execSQL(q, new Object[]{key});
+        }
+        catch (SQLException ex)
+        {
+
+        }
+
+    }
+
     public  ArrayList<String> getAllWordFromBookmark()
     {
 
@@ -221,5 +234,16 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         return tableName;
+    }
+
+    public void clearBookmark() {
+        try {
+            String q = "DELETE from bookmark;";
+            mDB.execSQL(q);
+        }
+        catch (SQLException ex)
+        {
+
+        }
     }
 }

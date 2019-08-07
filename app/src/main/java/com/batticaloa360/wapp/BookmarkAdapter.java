@@ -82,6 +82,11 @@ public class BookmarkAdapter extends BaseAdapter {
     {
         mSocure.remove(position);
     }
+
+    public void clear() {
+        mSocure.clear();
+    }
+
     class ViewHolder{
         TextView textView;
         ImageView btnDelete;

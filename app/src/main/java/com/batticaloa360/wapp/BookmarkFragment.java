@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,6 +22,7 @@ public class BookmarkFragment extends Fragment {
 
     private  FragmentListener listener;
  private  DBHelper mDBHelper;
+ private BookmarkAdapter adapter;
 
     public BookmarkFragment() {
         // Required empty public constructor
@@ -53,7 +55,7 @@ public  static BookmarkFragment getNewInstance(DBHelper dbHelper)
 
 
         ListView bookmarklist = (ListView) view.findViewById(R.id.bookmarklist);
-        final BookmarkAdapter adapter  = new BookmarkAdapter(getActivity(),mDBHelper.getAllWordFromBookmark());
+        adapter  = new BookmarkAdapter(getActivity(),mDBHelper.getAllWordFromBookmark());
         bookmarklist.setAdapter(adapter);
 
         adapter.setOnItemClick(new ListItemListener() {
@@ -67,6 +69,8 @@ public  static BookmarkFragment getNewInstance(DBHelper dbHelper)
         adapter.setOnItemDeleteClick(new ListItemListener() {
             @Override
             public void onItemClick(int position) {
+                String key = (String) adapter.getItem(position);
+                mDBHelper.removeBookmark(key);
               adapter.removeItem(position);
               adapter.notifyDataSetChanged();
             }
@@ -97,5 +101,18 @@ public  static BookmarkFragment getNewInstance(DBHelper dbHelper)
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_clear,menu);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_clear)
+        {
+            mDBHelper.clearBookmark();
+            adapter.clear();
+            adapter.notifyDataSetChanged();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

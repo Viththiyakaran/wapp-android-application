@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
 
@@ -132,26 +133,32 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if(R.id.action_settings  == id )
-            return  true;
 
 
-        Global.saveState(this,"dic_type",String.valueOf(id));
-        ArrayList<String> source = dbHelper.getWord(id);
+
 
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_eng_ta) {
+            Global.saveState(this,"dic_type",String.valueOf(id));
+            ArrayList<String> source = dbHelper.getWord(id);
            dictionaryFragment.resetDataSource(source);
             menuSetting.setIcon(getDrawable(R.drawable.e_t_w));
+            return  true;
         }else if(id==R.id.action_ta_eng)
         {
+            Global.saveState(this,"dic_type",String.valueOf(id));
+            ArrayList<String> source = dbHelper.getWord(id);
             dictionaryFragment.resetDataSource(source);
             menuSetting.setIcon(getDrawable(R.drawable.t_e_w));
+            return  true;
         }else if(id==R.id.action_ta_ta)
         {
+            Global.saveState(this,"dic_type",String.valueOf(id));
+            ArrayList<String> source = dbHelper.getWord(id);
             dictionaryFragment.resetDataSource(source);
             menuSetting.setIcon(getDrawable(R.drawable.t_t_w));
+            return  true;
         }
 
         return super.onOptionsItemSelected(item);
