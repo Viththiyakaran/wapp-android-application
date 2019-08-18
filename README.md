@@ -8,7 +8,7 @@ developed as a medium of learning, one of them is the application of Android-bas
 dictionary.  Dictionaries on mobile devices are more practical than conventional dictionaries, 
 as users can receive information quickly anywhere without space and time constraints.
 
-##Methodologies
+## Methodologies
 - Java
 - XML
 - Photoshop
