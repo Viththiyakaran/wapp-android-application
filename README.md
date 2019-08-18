@@ -9,7 +9,7 @@ dictionary.  Dictionaries on mobile devices are more practical than conventional
 as users can receive information quickly anywhere without space and time constraints.
 
 ##Methodologies
--Java
--XML
--Photoshop
--SQLite
+- Java
+- XML
+- Photoshop
+- SQLite
