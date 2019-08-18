@@ -1,6 +1,6 @@
-#Wapp-Andoird-Application
+# Wapp-Andoird-Application
 
-##Introduction 
+## Introduction 
 
 Wapp  is a one of  Dictionary.  It’s  important  media in learning English.  Along with the rapid 
 development of mobile technology at this time, the various applications for mobile is widely 
